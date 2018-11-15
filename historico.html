@@ -1,0 +1,227 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>QuickPoint</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="calendario/src/mini-event-calendar.css">
+    <link rel="stylesheet" href="mdl.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+
+    #Usuario {
+      font-size: 24px;
+    }
+
+    .direita {
+      float: right;
+    }
+
+    .Links {
+      color: whitesmoke;
+      text-decoration: none;
+      text-transform: none;
+    }
+
+    .altura {
+      height: 100%;
+      margin-bottom: 0px;
+      margin-right: auto;
+      margin-left: auto;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    .altura2 {
+      min-height: 10%;
+      margin-bottom: 1px;
+      margin-top: 0px;
+      padding: 2px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
+      text-align: center;
+    }
+
+    .altura3 {
+      height: 50px;
+      border-top-left-radius: 24px;
+      border-bottom-left-radius: 24px;
+      padding-left: 0px;
+    }
+
+    .batidas {
+      font-size: 15px;
+      color: whitesmoke
+    }
+
+    .azul {
+      background-color: #00ce6a;
+      width: 50%;
+      padding: 5px;
+      height: 50px;
+    }
+
+    /*
+    .mdl-button:active{
+      background-color: #1976d2;
+    }
+    .mdl-button:focus:not(:active){
+      background-color: #1976d2;
+    }
+    .mdl-button:hover{
+      background-color: #1976d2;
+    }
+    */
+    .transparente:active {
+      background-color: #00ce6a
+    }
+
+    .transparente:focus:not(:active) {
+      background-color: #00ce6a;
+    }
+
+    .transparente:hover {
+      background-color: #00ce6a;
+    }
+
+    .mdl-color--teal-300 {
+      background-color: #00ce6a !important;
+    }
+    #calendar{
+        width: 100%;
+        padding: 0;
+        border-radius: 2px;
+        margin: 0;
+        margin-bottom: 5px;
+    }
+  </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous">
+    </script>
+    <script src="calendario/src/mini-event-calendar.js"></script>
+</head>
+
+<body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">Histórico</span>
+                <div class="mdl-layout-spacer"></div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                </div>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+                    <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+                    <li class="mdl-menu__item">Sobre</li>
+                    <li class="mdl-menu__item">Informação Legal</li>
+                    <li class="mdl-menu__item">Sair do QuickPoint</li>
+                </ul>
+            </div>
+        </header>
+        <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+            <header class="demo-drawer-header">
+                <img src="images/user.jpg" class="demo-avatar">
+                <div class="demo-avatar-dropdown">
+                    <span>Fulano da Silva</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons" role="presentation">arrow_drop_down</i>
+                    </button>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                        <li class="mdl-menu__item">fulano_silva@empresa.com.br</li>
+                    </ul>
+                </div>
+            </header>
+            <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                <a class="mdl-navigation__link" href="index.html"><i class="mdl-color-text--blue-grey-400 material-icons"
+                        role="presentation">alarm_add</i>Registrar
+                    Ponto</a>
+                <a class="mdl-navigation__link" href="eu.html"><i class="mdl-color-text--blue-grey-400 material-icons"
+                        role="presentation">account_circle</i>Meus
+                    Dados</a>
+                <a class="mdl-navigation__link" href="empresa.html"><i class="mdl-color-text--blue-grey-400 material-icons"
+                        role="presentation">account_balance</i>Dados
+                    da Empresa</a>
+                <a class="mdl-navigation__link" href="historico.html"><i class="mdl-color-text--blue-grey-400 material-icons"
+                        role="presentation">assignment</i>Histórico
+                    de Registros</a>
+                <a class="mdl-navigation__link" href="avisos.html"><i class="mdl-color-text--blue-grey-400 material-icons"
+                        role="presentation">forum</i>Avisos
+                    e Recados</a>
+                <a class="mdl-navigation__link" href="comp.html"><i class="mdl-color-text--blue-grey-400 material-icons"
+                        role="presentation">local_offer</i>Comprovantes
+                    de Registro</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content mdl-color--grey-100">
+            <div class="mdl-grid demo-content">
+                <div id="calendar" class="demo-graphs mdl-shadow--2dp mdl-cell mdl-cell--8-col">
+
+                </div>
+                <script>
+                    var myEvents = [{
+                        title: "BATIDAS: 18:00 - 20:00 - 20:20 - 22:12",
+                        date: 1541041200000
+                        },{
+                        title: "BATIDAS: 8:27 - 20:02 - 20:20 - 22:17",
+                        date: 1540954800000,
+                        }
+                        ];
+                    $(document).ready(function(){
+                        $("#calendar").MEC({
+                            events: myEvents
+                        });
+                    });
+                </script>
+                <button class="mdl-button mdl-js-button azul transparente" type="button">
+                    <a href="index.html" class="Links">
+                        <i class="material-icons tamanhoIcone" role="presentation">local_offer</i>
+                        Comprovantes
+                    </a>
+                </button>
+                <button class="mdl-button mdl-js-button azul transparente" type="button">
+                    <a href="index.html" class="Links">
+                        <i class="material-icons tamanhoIcone" role="presentation">alarm_add</i>
+                        Novo Registro
+                    </a>
+                </button>
+            </div>
+        </main>
+    </div>
+    <script src="mdl.js"></script>
+</body>
+
+</html>
